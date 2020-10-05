@@ -1,4 +1,9 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignOutAlt,
+  faPlus,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+import { faSave } from "@fortawesome/free-regular-svg-icons";
 
-library.add(faSignOutAlt);
+library.add(faSignOutAlt, faSave, faPlus, faTrash);
