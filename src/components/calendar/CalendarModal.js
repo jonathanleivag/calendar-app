@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { uiCloseModal } from "../../actions/ui";
 import {
   enventClearActiveEvent,
-  eventAddNew,
-  eventUpdated,
+  eventStartAddNew,
+  eventStartUpdate,
 } from "../../actions/events";
 
 const customStyles = {
@@ -30,7 +30,7 @@ const nowPlusOne = now.clone().add(1, "hours");
 
 const initialState = {
   title: "",
-  notes: "",
+  note: "",
   start: now.toDate(),
   end: nowPlusOne.toDate(),
 };
@@ -45,7 +45,7 @@ export const CalendarModal = () => {
 
   const [titleInvalid, setTitleInvalid] = useState(true);
 
-  const { title, notes, start, end } = formValues;
+  const { title, note, start, end } = formValues;
 
   useEffect(() => {
     if (activeEvent) {
@@ -93,15 +93,9 @@ export const CalendarModal = () => {
     // TODO: realizar grabación a base de datos
 
     if (activeEvent) {
-      dispatch(eventUpdated(formValues));
+      dispatch(eventStartUpdate(formValues));
     } else {
-      dispatch(
-        eventAddNew({
-          ...formValues,
-          id: new Date().getTime(),
-          user: { _id: "123", name: "Jonathan" },
-        })
-      );
+      dispatch(eventStartAddNew(formValues));
     }
 
     setTitleInvalid(true);
@@ -162,8 +156,8 @@ export const CalendarModal = () => {
             className="form-control"
             placeholder="Notas"
             rows="5"
-            name="notes"
-            value={notes}
+            name="note"
+            value={note}
             onChange={handlerInputChanges}
           ></textarea>
           <small id="emailHelp" className="form-text text-muted">
