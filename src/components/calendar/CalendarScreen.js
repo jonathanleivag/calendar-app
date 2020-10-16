@@ -62,7 +62,7 @@ export const CalendarScreen = () => {
   };
 
   return (
-    <div>
+    <div className="calendar-screen">
       <NavBar />
       <Container className="mt-3">
         <Calendar
